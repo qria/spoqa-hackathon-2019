@@ -6,6 +6,7 @@ import { Image, StyleSheet, TouchableWithoutFeedback, Button,
   TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import Emoji from 'react-native-emoji';
+import LottieView from 'lottie-react-native';
 
 
 const BLOWING_THRESHHOLD = -10;
@@ -88,16 +89,18 @@ export default class App extends React.Component {
     // Play a random applause sound
     const randomNumber = Math.floor(Math.random() * this.applauseSounds.length);
     this.applauseSounds[randomNumber].play();
-  }
 
-  confetti() {
     // Confetti time!
     if(!this._confettiView) {
       // not yet loaded
       return;
     }
-    this.tadaSound.play();
     this._confettiView.startConfetti();
+  }
+
+  fireworks() {
+    this.fireworksAnimation && this.fireworksAnimation.play();
+    this.tadaSound.play();
   }
 
   render() {
@@ -105,8 +108,10 @@ export default class App extends React.Component {
     const isBlowing = noiseLevel > BLOWING_THRESHHOLD;
 
     const cakeImage = require('./assets/cake_base.png');
-    const fireIdleImage = require('./assets/fire_idle.png');
-    const fireMovingImage = require('./assets/fire.gif');
+    const fireIdleImage = require('./assets/fire_idle.gif');
+    const fireMovingImage = require('./assets/fire_moving.gif');
+
+    const fireworksAnimation = require('./assets/fireworks_animation.json');
 
     const musicNoteIcon = require('./assets/musicnote.png');
     const partyIcon = require('./assets/tada.png');
@@ -135,6 +140,10 @@ export default class App extends React.Component {
           style={styles.camera}
           type={RNCamera.Constants.Type.front}
         />
+
+        <LottieView ref={animation => {this.fireworksAnimation = animation;}}
+          source={fireworksAnimation} loop={false} speed={0.4}/>
+
         <View style={styles.cakeContainer}>
           <Image style={styles.cakeBase} source={cakeImage}/>
           {/* <TouchableWithoutFeedback
@@ -146,17 +155,19 @@ export default class App extends React.Component {
             </View>
           {/* </TouchableWithoutFeedback> */}
         </View>
+
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={() => {this.sing()}}>
             <Image style={styles.buttonIcon} source={musicNoteIcon}/>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => {this.confetti()}}>
+          <TouchableOpacity style={styles.button} onPress={() => {this.fireworks()}}>
             <Image style={styles.buttonIcon} source={partyIcon}/>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => {this.applause()}}>
             <Image style={styles.buttonIcon} source={clapIcon}/>
           </TouchableOpacity>
         </View>
+
         <Confetti
           confettiCount={50}  // small because of lag
           duration={3000}
