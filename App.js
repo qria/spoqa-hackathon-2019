@@ -2,8 +2,11 @@ import React from 'react';
 import RNSoundLevel from 'react-native-sound-level'
 import Sound from 'react-native-sound';
 import Confetti from 'react-native-confetti';
-import { Image, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
+import { Image, StyleSheet, TouchableWithoutFeedback,
+  TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
+import Emoji from 'react-native-emoji';
+
 
 const BLOWING_THRESHHOLD = -10;
 const CANDLE_OFF_SECONDS = 3;
@@ -76,6 +79,10 @@ export default class App extends React.Component {
     const fireIdleImage = require('./assets/fire_idle.png');
     const fireMovingImage = require('./assets/fire.gif');
 
+    const musicNoteIcon = require('./assets/musicnote.png');
+    const partyIcon = require('./assets/tada.png');
+    const clapIcon = require('./assets/clap.png');
+
     var fireImage;
 
     if (candleOn) {
@@ -129,52 +136,123 @@ export default class App extends React.Component {
         <View
           style={{
             flex: 1,
-            justifyContent:'center',
+            justifyContent:'flex-end',
             alignItems:'center',
           }}>
-            <TouchableWithoutFeedback
-              onPress={()=>{this.rekindle()}}>
+          <Image
+              style={{
+                width: 302,
+                height: 222,
+              }}
+              source={cakeImage}/>
+            {/* <TouchableWithoutFeedback
+              onPress={()=>{}}> */}
               <View
                 style={{
                   position: 'absolute',
                   height: 30,
-                  width: 100,
-                  bottom: 250,
+                  width: 120,
+                  bottom: 210,
+                  alignItems: 'space-around',
+                  justifyContent: 'space-around',
+                  flexDirection: 'row',
                 }}>
                 <Image
                   style={{
-                    position: 'absolute',
                     width: 30,
                     height: 30,
-                    left: 0,
                   }}
                   source={fireImage}/>
                 <Image
                   style={{
-                    position: 'absolute',
                     width: 30,
                     height: 30,
-                    left: 35,  // a nasty hack to center this
                   }}
                   source={fireImage}/>
                 <Image
                   style={{
-                    position: 'absolute',
                     width: 30,
                     height: 30,
-                    right: 0,
                   }}
                   source={fireImage}/>
               </View>
-            </TouchableWithoutFeedback>
-          <Image
+            {/* </TouchableWithoutFeedback> */}
+          </View>
+          <View
+            style={{
+              width: '100%',
+              flexDirection: 'row',
+              justifyContent: 'space-evenly',
+              marginTop: 40,
+              marginBottom: 31,
+            }}
+          >
+            <TouchableOpacity
               style={{
-                position: 'absolute',
-                width: 200,
-                height: 200,
-                bottom: 50,
+                height: 76,
+                width: 76,
+                borderRadius: 38,
+                borderColor: 'white',
+                borderStyle: 'solid',
+                borderWidth: 2,
+                zIndex: 2,
+                justifyContent: 'center',
+                alignContent: 'center',
               }}
-              source={cakeImage}/>
+              onPress={() => {this.confetti()}}>
+              <Image
+                style={{
+                  width: 50,
+                  height: 50,
+                  marginLeft: 11,
+                  }}
+                  source={musicNoteIcon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                height: 76,
+                width: 76,
+                borderRadius: 38,
+                borderColor: 'white',
+                borderStyle: 'solid',
+                borderWidth: 2,
+                zIndex: 2,
+                justifyContent: 'center',
+                alignContent: 'center',
+              }}
+              onPress={() => {this.confetti()}}>
+              <Image
+                style={{
+                  width: 50,
+                  height: 50,
+                  marginLeft: 11,
+                  }}
+                  source={partyIcon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                height: 76,
+                width: 76,
+                borderRadius: 38,
+                borderColor: 'white',
+                borderStyle: 'solid',
+                borderWidth: 2,
+                zIndex: 2,
+                justifyContent: 'center',
+                alignContent: 'center',
+              }}
+              onPress={() => {this.applause()}}>
+              <Image
+                style={{
+                  width: 50,
+                  height: 50,
+                  marginLeft: 11,
+                  }}
+                  source={clapIcon}
+              />
+            </TouchableOpacity>
           </View>
         </RNCamera>
       </View>
@@ -194,14 +272,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-  },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    padding: 15,
-    paddingHorizontal: 20,
-    alignSelf: 'center',
-    margin: 20,
   },
 });
