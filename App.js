@@ -1,5 +1,6 @@
 import React from 'react';
 import RNSoundLevel from 'react-native-sound-level'
+
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
@@ -47,7 +48,7 @@ export default class App extends React.Component {
     const { candleOn, noiseLevel }  = this.state;
     const isBlowing = noiseLevel > BLOWING_THRESHHOLD;
 
-    const cakeImage = require('./assets/birthday-cake-off.png');
+    const cakeImage = require('./assets/cake_base.png');
     const fireIdleImage = require('./assets/fire_idle.png');
     const fireMovingImage = require('./assets/fire.gif');
 
@@ -98,9 +99,9 @@ export default class App extends React.Component {
             <View
               style={{
                 position: 'absolute',
-                height: 40,
-                width: 145,
-                bottom: 200,
+                height: 30,
+                width: 100,
+                bottom: 250,
               }}>
 
               <Image
@@ -109,7 +110,6 @@ export default class App extends React.Component {
                   width: 30,
                   height: 30,
                   left: 0,
-                  bottom: 0,
                 }}
                 source={fireImage}/>
               <Image
@@ -117,7 +117,7 @@ export default class App extends React.Component {
                   position: 'absolute',
                   width: 30,
                   height: 30,
-                  left: 58,  // a nasty hack to center this
+                  left: 35,  // a nasty hack to center this
                 }}
                 source={fireImage}/>
               <Image
@@ -126,7 +126,6 @@ export default class App extends React.Component {
                   width: 30,
                   height: 30,
                   right: 0,
-                  bottom: 0,
                 }}
                 source={fireImage}/>
             </View>
