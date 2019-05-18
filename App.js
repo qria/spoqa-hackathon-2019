@@ -1,6 +1,7 @@
 import React from 'react';
 import RNSoundLevel from 'react-native-sound-level'
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { RNCamera } from 'react-native-camera';
 
 const BLOWING_THRESHHOLD = -10;
 const CANDLE_OFF_SECONDS = 3;
@@ -43,36 +44,127 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { blowingSeconds, candleOn, noiseLevel }  = this.state;
+    const { candleOn, noiseLevel }  = this.state;
     const isBlowing = noiseLevel > BLOWING_THRESHHOLD;
-    var text;
+
+    const cakeImage = require('./assets/birthday-cake-off.png');
+    const fireIdleImage = require('./assets/fire_idle.png');
+    const fireMovingImage = require('./assets/fire.gif');
+
+    var fireImage;
+
     if (candleOn) {
       if (isBlowing) {
         // shaking
-        text = '흔들흔들';
+        fireImage = fireMovingImage;
       }
       else {
         // idle
-        text = '불어보세요';
+        fireImage = fireIdleImage;
       }
     } else {
       // off
-      text = '주금';
+      fireImage = null;
     }
 
     return (
       <View style={styles.container}>
-        <Text> { text } </Text>
+        <RNCamera
+          ref={ref => {
+            this.camera = ref;
+          }}
+          style={styles.preview}
+          type={RNCamera.Constants.Type.front}
+          androidCameraPermissionOptions={{
+            title: 'Permission to use camera',
+            message: 'We need your permission to use your camera',
+            buttonPositive: 'Ok',
+            buttonNegative: 'Cancel',
+          }}
+          androidRecordAudioPermissionOptions={{
+            title: 'Permission to use audio recording',
+            message: 'We need your permission to use your audio',
+            buttonPositive: 'Ok',
+            buttonNegative: 'Cancel',
+          }}
+        >
+          <View
+            style={{
+              flex: 1,
+              justifyContent:'center',
+              alignItems:'center',
+            }}
+          >
+            <View
+              style={{
+                position: 'absolute',
+                height: 40,
+                width: 145,
+                bottom: 200,
+              }}>
+
+              <Image
+                style={{
+                  position: 'absolute',
+                  width: 30,
+                  height: 30,
+                  left: 0,
+                  bottom: 0,
+                }}
+                source={fireImage}/>
+              <Image
+                style={{
+                  position: 'absolute',
+                  width: 30,
+                  height: 30,
+                  left: 58,  // a nasty hack to center this
+                }}
+                source={fireImage}/>
+              <Image
+                style={{
+                  position: 'absolute',
+                  width: 30,
+                  height: 30,
+                  right: 0,
+                  bottom: 0,
+                }}
+                source={fireImage}/>
+            </View>
+          <Image
+              style={{
+                position: 'absolute',
+                width: 200,
+                height: 200,
+                bottom: 50,
+              }}
+              source={cakeImage}/>
+          </View>
+        </RNCamera>
       </View>
     );
   }
+
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    flexDirection: 'column',
+    backgroundColor: 'black',
+  },
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    padding: 15,
+    paddingHorizontal: 20,
+    alignSelf: 'center',
+    margin: 20,
   },
 });

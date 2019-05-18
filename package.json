@@ -8,6 +8,7 @@
     "@babel/runtime": "^7.0.0",
     "react": "16.5.0",
     "react-native": "0.57.1",
+    "react-native-camera": "^2.9.0",
     "react-native-sound-level": "^1.1.0"
   },
   "devDependencies": {
