@@ -1,7 +1,8 @@
 import React from 'react';
 import RNSoundLevel from 'react-native-sound-level'
+import Sound from 'react-native-sound';
 
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
 const BLOWING_THRESHHOLD = -10;
@@ -15,6 +16,24 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    Sound.setCategory('Playback');
+    var whoosh = new Sound('./assets/applause.mp3', Sound.MAIN_BUNDLE, (error) => {
+      if (error) {
+        console.log('failed to load the sound', error);
+        return;
+      }
+      // loaded successfully
+      console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
+
+      // Play the sound with an onEnd callback
+      whoosh.play((success) => {
+        if (success) {
+          console.log('successfully finished playing');
+        } else {
+          console.log('playback failed due to audio decoding errors');
+        }
+      });
+    });
     RNSoundLevel.start()
     RNSoundLevel.onNewFrame = (data) => {
       // This is called each seconds
@@ -42,6 +61,12 @@ export default class App extends React.Component {
 
   componentWillUnmount() {
     RNSoundLevel.stop()
+  }
+
+  rekindle() {
+    this.setState({
+      candleOn: true,
+    })
   }
 
   render() {
@@ -94,41 +119,42 @@ export default class App extends React.Component {
               flex: 1,
               justifyContent:'center',
               alignItems:'center',
-            }}
-          >
-            <View
-              style={{
-                position: 'absolute',
-                height: 30,
-                width: 100,
-                bottom: 250,
-              }}>
-
-              <Image
+            }}>
+            <TouchableWithoutFeedback
+              onPress={()=>{this.rekindle()}}>
+              <View
                 style={{
                   position: 'absolute',
-                  width: 30,
                   height: 30,
-                  left: 0,
-                }}
-                source={fireImage}/>
-              <Image
-                style={{
-                  position: 'absolute',
-                  width: 30,
-                  height: 30,
-                  left: 35,  // a nasty hack to center this
-                }}
-                source={fireImage}/>
-              <Image
-                style={{
-                  position: 'absolute',
-                  width: 30,
-                  height: 30,
-                  right: 0,
-                }}
-                source={fireImage}/>
-            </View>
+                  width: 100,
+                  bottom: 250,
+                }}>
+                <Image
+                  style={{
+                    position: 'absolute',
+                    width: 30,
+                    height: 30,
+                    left: 0,
+                  }}
+                  source={fireImage}/>
+                <Image
+                  style={{
+                    position: 'absolute',
+                    width: 30,
+                    height: 30,
+                    left: 35,  // a nasty hack to center this
+                  }}
+                  source={fireImage}/>
+                <Image
+                  style={{
+                    position: 'absolute',
+                    width: 30,
+                    height: 30,
+                    right: 0,
+                  }}
+                  source={fireImage}/>
+              </View>
+            </TouchableWithoutFeedback>
           <Image
               style={{
                 position: 'absolute',
