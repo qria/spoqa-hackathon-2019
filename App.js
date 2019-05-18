@@ -2,7 +2,7 @@ import React from 'react';
 import RNSoundLevel from 'react-native-sound-level'
 import Sound from 'react-native-sound';
 import Confetti from 'react-native-confetti';
-import { Image, StyleSheet, TouchableWithoutFeedback,
+import { Image, StyleSheet, TouchableWithoutFeedback, Button,
   TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import Emoji from 'react-native-emoji';
@@ -10,6 +10,17 @@ import Emoji from 'react-native-emoji';
 
 const BLOWING_THRESHHOLD = -10;
 const CANDLE_OFF_SECONDS = 3;
+
+function loadSound(soundName) {
+  // To add sound, add it first to xcode and android raw folder.
+  // for details, see: https://github.com/zmxv/react-native-sound#basic-usage
+  return new Sound(soundName, Sound.MAIN_BUNDLE, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+  });
+}
 
 export default class App extends React.Component {
   state = {
@@ -19,13 +30,19 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+
+    // Loading sounds
     Sound.setCategory('Playback');
-    this.applauseSound = new Sound('applause.mp3', Sound.MAIN_BUNDLE, (error) => {
-      if (error) {
-        console.log('failed to load the sound', error);
-        return;
-      }
-    });
+
+    this.applauseSounds = [
+      loadSound('applause1.mp3'),
+      loadSound('applause2.mp3'),
+      loadSound('applause3.mp3'),
+    ]
+    this.happyBirthdaySong = loadSound('happy_birthday.mp3');
+    this.tadaSound = loadSound('tada.mp3');
+
+    // Loading Sound Level Detector
     RNSoundLevel.start()
     RNSoundLevel.onNewFrame = (data) => {
       // This is called each seconds
@@ -56,19 +73,31 @@ export default class App extends React.Component {
   }
 
   rekindle() {
+    // Turn candle on again
     this.setState({
       candleOn: true,
     })
   }
 
+  sing() {
+    // Happy birthday to you~
+    this.happyBirthdaySong.play();
+  }
+
   applause() {
-    this.applauseSound.play();
+    // Play a random applause sound
+    const randomNumber = Math.floor(Math.random() * this.applauseSounds.length);
+    this.applauseSounds[randomNumber].play();
   }
 
   confetti() {
-    if(this._confettiView) {
-      this._confettiView.startConfetti();
+    // Confetti time!
+    if(!this._confettiView) {
+      // not yet loaded
+      return;
     }
+    this.tadaSound.play();
+    this._confettiView.startConfetti();
   }
 
   render() {
@@ -101,164 +130,40 @@ export default class App extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            zIndex: 1,
-          }}>
-          <Confetti
-            duration={4000}
-            confettiCount={50}
-            ref={(node) => this._confettiView = node}/>
-        </View>
-
         <RNCamera
-          ref={ref => {
-            this.camera = ref;
-          }}
-          style={styles.preview}
+          ref={ref => {this.camera = ref;}}
+          style={styles.camera}
           type={RNCamera.Constants.Type.front}
-          androidCameraPermissionOptions={{
-            title: 'Permission to use camera',
-            message: 'We need your permission to use your camera',
-            buttonPositive: 'Ok',
-            buttonNegative: 'Cancel',
-          }}
-          androidRecordAudioPermissionOptions={{
-            title: 'Permission to use audio recording',
-            message: 'We need your permission to use your audio',
-            buttonPositive: 'Ok',
-            buttonNegative: 'Cancel',
-          }}
-        >
-        <View
-          style={{
-            flex: 1,
-            justifyContent:'flex-end',
-            alignItems:'center',
-          }}>
-          <Image
-              style={{
-                width: 302,
-                height: 222,
-              }}
-              source={cakeImage}/>
-            {/* <TouchableWithoutFeedback
-              onPress={()=>{}}> */}
-              <View
-                style={{
-                  position: 'absolute',
-                  height: 30,
-                  width: 120,
-                  bottom: 210,
-                  alignItems: 'space-around',
-                  justifyContent: 'space-around',
-                  flexDirection: 'row',
-                }}>
-                <Image
-                  style={{
-                    width: 30,
-                    height: 30,
-                  }}
-                  source={fireImage}/>
-                <Image
-                  style={{
-                    width: 30,
-                    height: 30,
-                  }}
-                  source={fireImage}/>
-                <Image
-                  style={{
-                    width: 30,
-                    height: 30,
-                  }}
-                  source={fireImage}/>
-              </View>
-            {/* </TouchableWithoutFeedback> */}
-          </View>
-          <View
-            style={{
-              width: '100%',
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              marginTop: 40,
-              marginBottom: 31,
-            }}
-          >
-            <TouchableOpacity
-              style={{
-                height: 76,
-                width: 76,
-                borderRadius: 38,
-                borderColor: 'white',
-                borderStyle: 'solid',
-                borderWidth: 2,
-                zIndex: 2,
-                justifyContent: 'center',
-                alignContent: 'center',
-              }}
-              onPress={() => {this.confetti()}}>
-              <Image
-                style={{
-                  width: 50,
-                  height: 50,
-                  marginLeft: 11,
-                  }}
-                  source={musicNoteIcon}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                height: 76,
-                width: 76,
-                borderRadius: 38,
-                borderColor: 'white',
-                borderStyle: 'solid',
-                borderWidth: 2,
-                zIndex: 2,
-                justifyContent: 'center',
-                alignContent: 'center',
-              }}
-              onPress={() => {this.confetti()}}>
-              <Image
-                style={{
-                  width: 50,
-                  height: 50,
-                  marginLeft: 11,
-                  }}
-                  source={partyIcon}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                height: 76,
-                width: 76,
-                borderRadius: 38,
-                borderColor: 'white',
-                borderStyle: 'solid',
-                borderWidth: 2,
-                zIndex: 2,
-                justifyContent: 'center',
-                alignContent: 'center',
-              }}
-              onPress={() => {this.applause()}}>
-              <Image
-                style={{
-                  width: 50,
-                  height: 50,
-                  marginLeft: 11,
-                  }}
-                  source={clapIcon}
-              />
-            </TouchableOpacity>
-          </View>
-        </RNCamera>
+        />
+        <View style={styles.cakeContainer}>
+          <Image style={styles.cakeBase} source={cakeImage}/>
+          {/* <TouchableWithoutFeedback
+            onPress={()=>{}}> */}
+            <View style={styles.fireContainer}>
+              <Image style={styles.fireImage} source={fireImage}/>
+              <Image style={styles.fireImage} source={fireImage}/>
+              <Image style={styles.fireImage} source={fireImage}/>
+            </View>
+          {/* </TouchableWithoutFeedback> */}
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={() => {this.sing()}}>
+            <Image style={styles.buttonIcon} source={musicNoteIcon}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => {this.confetti()}}>
+            <Image style={styles.buttonIcon} source={partyIcon}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => {this.applause()}}>
+            <Image style={styles.buttonIcon} source={clapIcon}/>
+          </TouchableOpacity>
+        </View>
+        <Confetti
+          confettiCount={50}  // small because of lag
+          duration={3000}
+          ref={(node) => this._confettiView = node}/>
       </View>
     );
   }
-
 }
 
 
@@ -268,9 +173,53 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: 'black',
   },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
+  camera: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
+  fireContainer: {
+    position: 'absolute',
+    bottom: 210,
+    height: 30,
+    width: 120,
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  fireImage: {
+    width: 30,
+    height: 30,
+  },
+  cakeContainer: {
+    flex: 1,
+    justifyContent:'flex-end',
+    alignItems:'center',
+  },
+  cakeBase: {
+    width: 302,
+    height: 222,
+  },
+  buttonContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    marginTop: 40,
+    marginBottom: 31,
+  },
+  button: {
+    height: 76,
+    width: 76,
+    borderRadius: 38,
+    borderColor: 'white',
+    borderStyle: 'solid',
+    borderWidth: 2,
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  buttonIcon: {
+    width: 50,
+    height: 50,
+    marginLeft: 11,
   },
 });

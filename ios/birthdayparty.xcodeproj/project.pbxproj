@@ -14,8 +14,12 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* birthdaypartyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* birthdaypartyTests.m */; };
 		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		12CD65C222906B7900EBFFB3 /* applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12CD65C122906B7900EBFFB3 /* applause.mp3 */; };
 		12D4CD3D2290AA6E00E8B628 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 12D4CD142290AA6E00E8B628 /* splash.png */; };
+		12D4CD432290B81D00E8B628 /* applause2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12D4CD3E2290B81C00E8B628 /* applause2.mp3 */; };
+		12D4CD442290B81D00E8B628 /* applause3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12D4CD3F2290B81C00E8B628 /* applause3.mp3 */; };
+		12D4CD452290B81D00E8B628 /* happy_birthday.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12D4CD402290B81C00E8B628 /* happy_birthday.mp3 */; };
+		12D4CD462290B81D00E8B628 /* applause1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12D4CD412290B81C00E8B628 /* applause1.mp3 */; };
+		12D4CD472290B81D00E8B628 /* tada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12D4CD422290B81D00E8B628 /* tada.mp3 */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -354,8 +358,12 @@
 		00E356F21AD99517003FC87E /* birthdaypartyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = birthdaypartyTests.m; sourceTree = "<group>"; };
 		01E416E5302A4FF798095517 /* libRNSoundLevel.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSoundLevel.a; sourceTree = "<group>"; };
 		04D96D8F1DE2408BAF56050E /* RNSoundLevel.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSoundLevel.xcodeproj; path = "../node_modules/react-native-sound-level/ios/RNSoundLevel.xcodeproj"; sourceTree = "<group>"; };
-		12CD65C122906B7900EBFFB3 /* applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = applause.mp3; path = ../assets/applause.mp3; sourceTree = "<group>"; };
 		12D4CD142290AA6E00E8B628 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = ../assets/splash.png; sourceTree = "<group>"; };
+		12D4CD3E2290B81C00E8B628 /* applause2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = applause2.mp3; path = ../assets/applause2.mp3; sourceTree = "<group>"; };
+		12D4CD3F2290B81C00E8B628 /* applause3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = applause3.mp3; path = ../assets/applause3.mp3; sourceTree = "<group>"; };
+		12D4CD402290B81C00E8B628 /* happy_birthday.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = happy_birthday.mp3; path = ../assets/happy_birthday.mp3; sourceTree = "<group>"; };
+		12D4CD412290B81C00E8B628 /* applause1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = applause1.mp3; path = ../assets/applause1.mp3; sourceTree = "<group>"; };
+		12D4CD422290B81D00E8B628 /* tada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tada.mp3; path = ../assets/tada.mp3; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* birthdayparty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = birthdayparty.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -646,8 +654,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				12D4CD412290B81C00E8B628 /* applause1.mp3 */,
+				12D4CD3E2290B81C00E8B628 /* applause2.mp3 */,
+				12D4CD3F2290B81C00E8B628 /* applause3.mp3 */,
+				12D4CD402290B81C00E8B628 /* happy_birthday.mp3 */,
+				12D4CD422290B81D00E8B628 /* tada.mp3 */,
 				12D4CD142290AA6E00E8B628 /* splash.png */,
-				12CD65C122906B7900EBFFB3 /* applause.mp3 */,
 				13B07FAE1A68108700A75B9A /* birthdayparty */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* birthdaypartyTests */,
@@ -1162,9 +1174,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				12D4CD3D2290AA6E00E8B628 /* splash.png in Resources */,
-				12CD65C222906B7900EBFFB3 /* applause.mp3 in Resources */,
+				12D4CD432290B81D00E8B628 /* applause2.mp3 in Resources */,
+				12D4CD472290B81D00E8B628 /* tada.mp3 in Resources */,
+				12D4CD452290B81D00E8B628 /* happy_birthday.mp3 in Resources */,
+				12D4CD442290B81D00E8B628 /* applause3.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				12D4CD462290B81D00E8B628 /* applause1.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
