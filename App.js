@@ -1,7 +1,7 @@
 import React from 'react';
 import RNSoundLevel from 'react-native-sound-level'
 import Sound from 'react-native-sound';
-
+import Confetti from 'react-native-confetti';
 import { Image, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
@@ -62,6 +62,12 @@ export default class App extends React.Component {
     this.applauseSound.play();
   }
 
+  confetti() {
+    if(this._confettiView) {
+      this._confettiView.startConfetti();
+    }
+  }
+
   render() {
     const { candleOn, noiseLevel }  = this.state;
     const isBlowing = noiseLevel > BLOWING_THRESHHOLD;
@@ -88,6 +94,19 @@ export default class App extends React.Component {
 
     return (
       <View style={styles.container}>
+        <View
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            zIndex: 1,
+          }}>
+          <Confetti
+            duration={4000}
+            confettiCount={50}
+            ref={(node) => this._confettiView = node}/>
+        </View>
+
         <RNCamera
           ref={ref => {
             this.camera = ref;
@@ -107,12 +126,12 @@ export default class App extends React.Component {
             buttonNegative: 'Cancel',
           }}
         >
-          <View
-            style={{
-              flex: 1,
-              justifyContent:'center',
-              alignItems:'center',
-            }}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent:'center',
+            alignItems:'center',
+          }}>
             <TouchableWithoutFeedback
               onPress={()=>{this.rekindle()}}>
               <View
