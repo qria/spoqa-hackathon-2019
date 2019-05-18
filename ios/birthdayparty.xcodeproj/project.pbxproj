@@ -14,6 +14,8 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* birthdaypartyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* birthdaypartyTests.m */; };
 		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		12CD65C022906B6200EBFFB3 /* ios in Resources */ = {isa = PBXBuildFile; fileRef = 12CD65BF22906B6200EBFFB3 /* ios */; };
+		12CD65C222906B7900EBFFB3 /* applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12CD65C122906B7900EBFFB3 /* applause.mp3 */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -352,6 +354,8 @@
 		00E356F21AD99517003FC87E /* birthdaypartyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = birthdaypartyTests.m; sourceTree = "<group>"; };
 		01E416E5302A4FF798095517 /* libRNSoundLevel.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSoundLevel.a; sourceTree = "<group>"; };
 		04D96D8F1DE2408BAF56050E /* RNSoundLevel.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSoundLevel.xcodeproj; path = "../node_modules/react-native-sound-level/ios/RNSoundLevel.xcodeproj"; sourceTree = "<group>"; };
+		12CD65BF22906B6200EBFFB3 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ios; sourceTree = "<group>"; };
+		12CD65C122906B7900EBFFB3 /* applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = applause.mp3; path = ../assets/applause.mp3; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* birthdayparty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = birthdayparty.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -642,6 +646,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				12CD65C122906B7900EBFFB3 /* applause.mp3 */,
+				12CD65BF22906B6200EBFFB3 /* ios */,
 				13B07FAE1A68108700A75B9A /* birthdayparty */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* birthdaypartyTests */,
@@ -1155,6 +1161,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12CD65C022906B6200EBFFB3 /* ios in Resources */,
+				12CD65C222906B7900EBFFB3 /* applause.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
