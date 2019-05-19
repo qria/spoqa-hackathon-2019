@@ -2,10 +2,8 @@ import React from 'react';
 import RNSoundLevel from 'react-native-sound-level'
 import Sound from 'react-native-sound';
 import Confetti from 'react-native-confetti';
-import { Image, StyleSheet, TouchableWithoutFeedback, Button,
-  TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
-import Emoji from 'react-native-emoji';
 import LottieView from 'lottie-react-native';
 
 
